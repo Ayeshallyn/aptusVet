@@ -1,196 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Aptus Health Care – Book Appointment</title>
-
-<style>
-    * {
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-        margin: 0;
-        background-color: #5f76d6;
-    }
-
-    /* Header */
-    .header {
-        background-color: #5f76d6;
-        color: white;
-        padding: 20px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .header h1 {
-        font-size: 20px;
-        margin: 0;
-    }
-
-    .header button {
-        background-color: #f5efe6;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: 500;
-    }
-
-    /* Card */
-    .container {
-        background-color: white;
-        width: 80%;
-        margin: 30px auto;
-        border-radius: 12px;
-        padding: 30px;
-    }
-
-    .container h2 {
-        margin-top: 0;
-        color: #5f76d6;
-    }
-
-    hr {
-        border: none;
-        border-top: 1px solid #ddd;
-        margin: 25px 0;
-    }
-
-    /* Form Layout */
-    .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-    }
-
-    .field {
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 14px;
-    }
-
-    input, select, textarea {
-        width: 100%;
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-    }
-
-    textarea {
-        resize: none;
-        height: 80px;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-
-        .container {
-            width: 95%;
-        }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Screen</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-
 <body>
 
-<div class="header">
-    <h1>🐾 Aptus Health Care</h1>
-    <button>📅 Book Appointment</button>
-</div>
+    <div class="login-card">
+        <h1>Welcome Back</h1>
 
-<div class="container">
-    <h2>Book new appointment</h2>
-
-    <div class="grid">
-        <!-- Pet Information -->
-        <div>
-            <h3>Pet Information</h3>
-
-            <div class="field">
-                <label>Pet Name*</label>
-                <input type="text">
-            </div>
-
-            <div class="field">
-                <label>Pet Type*</label>
-                <select>
-                    <option>Select pet type</option>
-                    <option>Dog</option>
-                    <option>Cat</option>
-                    <option>Bird</option>
-                </select>
+        <div class="input-section">
+            <label>Username</label>
+            <div class="input-container">
+                <i data-lucide="user" class="field-icon"></i>
+                <input type="text" placeholder="Enter Username">
             </div>
         </div>
 
-        <!-- Owner Information -->
-        <div>
-            <h3>Owner Information</h3>
-
-            <div class="field">
-                <label>Owner Name*</label>
-                <input type="text">
-            </div>
-
-            <div class="field">
-                <label>Phone Number*</label>
-                <input type="text">
-            </div>
-
-            <div class="field">
-                <label>Email*</label>
-                <input type="email">
+        <div class="input-section">
+            <label>Password</label>
+            <div class="input-container">
+                <i data-lucide="lock" class="field-icon"></i>
+                <input type="password" placeholder="Enter your password">
             </div>
         </div>
+
+        <button class="login-btn">Log in</button>
+
+        <p class="footer-text">Don't have an account? <a href="#">Sign up</a></p>
     </div>
 
-    <hr>
-
-    <div class="grid">
-        <!-- Appointment Details -->
-        <div>
-            <h3>Appointment Details</h3>
-
-            <div class="field">
-                <label>Appointment Type*</label>
-                <select>
-                    <option>Select appointment</option>
-                    <option>Check-up</option>
-                    <option>Vaccination</option>
-                    <option>Grooming</option>
-                </select>
-            </div>
-
-            <div class="field">
-                <label>Time*</label>
-                <input type="time">
-            </div>
-        </div>
-
-        <!-- Date + Notes -->
-        <div>
-            <div class="field">
-                <label>Date*</label>
-                <input type="date">
-            </div>
-
-            <div class="field">
-                <label>Additional Note</label>
-                <textarea></textarea>
-            </div>
-        </div>
-    </div>
-</div>
-
+    <script>
+      lucide.createIcons();
+    </script>
 </body>
 </html>
