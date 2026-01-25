@@ -1,40 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Screen</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aptus Vet Shop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7f6;
+      color: #333;
+    }
+
+    header {
+      background-color: #2f7d6d;
+      color: #fff;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 26px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .shop-header input {
+      padding: 10px 14px;
+      width: 250px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .categories button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 20px;
+      background-color: #e0f2ee;
+      color: #2f7d6d;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .categories button:hover {
+      background-color: #2f7d6d;
+      color: #fff;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-image {
+      height: 150px;
+      background-color: #eef3f2;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .product-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .product-card p {
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .price {
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #2f7d6d;
+    }
+
+    .product-card button {
+      margin-top: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2f7d6d;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .product-card button:hover {
+      background-color: #25685b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #e9efee;
+      font-size: 13px;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <h1>Welcome Back</h1>
+  <header>
+    <h1>Aptus Vet Shop</h1>
+    <p>Quality care products recommended by our veterinarians</p>
+  </header>
 
-        <div class="input-section">
-            <label>Username</label>
-            <div class="input-container">
-                <i data-lucide="user" class="field-icon"></i>
-                <input type="text" placeholder="Enter Username">
-            </div>
-        </div>
+  <div class="container">
 
-        <div class="input-section">
-            <label>Password</label>
-            <div class="input-container">
-                <i data-lucide="lock" class="field-icon"></i>
-                <input type="password" placeholder="Enter your password">
-            </div>
-        </div>
-
-        <button class="login-btn">Log in</button>
-
-        <p class="footer-text">Don't have an account? <a href="#">Sign up</a></p>
+    <div class="shop-header">
+      <h2>Shop Products</h2>
+      <input type="text" placeholder="Search products..." />
     </div>
 
-    <script>
-      lucide.createIcons();
-    </script>
+    <div class="categories">
+      <button>All</button>
+      <button>Food</button>
+      <button>Supplements</button>
+      <button>Medicines</button>
+      <button>Grooming</button>
+      <button>Accessories</button>
+    </div>
+
+    <div class="products">
+
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <h3>Dog Multivitamins</h3>
+        <p>Supports overall health and immunity.</p>
+        <div class="price">₱450.00</div>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <h3>Cat Dry Food</h3>
+        <p>Nutritious and vet-approved formula.</p>
+        <div class="price">₱1,200.00</div>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <h3>Pet Shampoo</h3>
+        <p>Gentle care for sensitive skin.</p>
+        <div class="price">₱320.00</div>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <h3>Tick & Flea Medicine</h3>
+        <p>Effective protection for your pet.</p>
+        <div class="price">₱680.00</div>
+        <button>Add to Cart</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Aptus Veterinary Clinic. All rights reserved.
+  </footer>
+
 </body>
 </html>
