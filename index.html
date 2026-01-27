@@ -3,442 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aptus Vet Shop</title>
+  <title>Aptus Vet Admin</title>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    body {
       font-family: Arial, Helvetica, sans-serif;
+      background-color: #f7f2ee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    body {
-      background-color: #f7f2ee;
+    .admin-container {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 450px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .admin-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #6b4f2d;
+    }
+
+    label {
+      font-size: 14px;
+      margin-top: 12px;
+      display: block;
       color: #4a4a4a;
     }
 
-    header {
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .admin-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
       background-color: #B7966B;
       color: #fff;
-      padding: 20px;
-    }
-
-    header h1 {
-      font-size: 26px;
-    }
-
-    header p {
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 30px auto;
-    }
-
-    .shop-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .shop-header input {
-      padding: 10px 14px;
-      width: 250px;
-      border-radius: 6px;
-      border: 1px solid #dcd7d2;
-    }
-
-    .categories {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-
-    .categories button {
-      padding: 8px 14px;
       border: none;
-      border-radius: 20px;
-      background-color: #a67b52;
-      color: #fff;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .categories button:hover,
-    .categories button.active {
-      background-color: #8e6845;
-      color: #fff;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-card img.product-image {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
       border-radius: 8px;
-      margin-bottom: 12px;
-      background-color: #fbf9f7;
-    }
-
-    .product-card h3 {
       font-size: 16px;
-      margin-bottom: 6px;
-      color: #2c5c54;
-    }
-
-    .product-card p {
-      font-size: 13px;
-      margin-bottom: 10px;
-      color: #777;
-    }
-
-    .price {
-      font-weight: bold;
-      margin-bottom: 12px;
-      color: #a67b52;
-    }
-
-    .product-card button {
-      margin-top: auto;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background-color: #946d43;
-      color: #fff;
       cursor: pointer;
-      font-size: 14px;
     }
 
-    .product-card button:hover {
-      background-color: #724A24;
+    .admin-btn:hover {
+      background-color: #a3835a;
     }
 
-    footer {
+    .note {
+      font-size: 12px;
+      margin-top: 10px;
+      color: #777;
       text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
-      color: #b5b0ab;
-      font-size: 13px;
-      margin-top: 40px;
-      border-top: 1px solid #e0dcd8;
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Aptus Vet Shop</h1>
-    <p>Quality care products recommended by our veterinarians</p>
-  </header>
+  <div class="admin-container">
+    <h2>Aptus Vet Admin Panel</h2>
 
-  <div class="container">
+    <form>
+      <label>Admin Username</label>
+      <input type="text" placeholder="Enter username" required>
 
-    <div class="shop-header">
-      <h2>Shop Products</h2>
-      <input type="text" placeholder="Search products..." />
+      <label>Product Name</label>
+      <input type="text" placeholder="e.g. Dog Multivitamins" required>
+
+      <label>Category</label>
+      <select required>
+        <option value="">Select category</option>
+        <option>Food</option>
+        <option>Supplements</option>
+        <option>Medicines</option>
+        <option>Grooming</option>
+        <option>Accessories</option>
+      </select>
+
+      <label>Price (₱)</label>
+      <input type="number" placeholder="e.g. 450" required>
+
+      <label>Product Description</label>
+      <textarea placeholder="Short product details..."></textarea>
+
+      <label>Image File Name</label>
+      <input type="text" placeholder="e.g. dogmulti.jpg">
+
+      <label>Stock Status</label>
+      <select>
+        <option>In Stock</option>
+        <option>Out of Stock</option>
+      </select>
+
+      <button class="admin-btn">Save Product</button>
+    </form>
+
+    <div class="note">
+      *Images must be uploaded to your GitHub repository
     </div>
-
-    <div class="categories">
-      <button class="active" data-category="all">All</button>
-      <button data-category="food">Food</button>
-      <button data-category="supplements">Supplements</button>
-      <button data-category="medicines">Medicines</button>
-      <button data-category="grooming">Grooming</button>
-      <button data-category="accessories">Accessories</button>
-    </div>
-
-    <div class="products">
-
-      <!-- All products with correct categories -->
-      <div class="product-card" data-category="supplements">
-        <img src="dogmulti.jpg" alt="Dog Multivitamins" class="product-image">
-        <h3>Dog Multivitamins</h3>
-        <p>Supports overall health and immunity.</p>
-        <div class="price">₱450.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="food">
-        <img src="catdry.png" alt="Cat Dry Food" class="product-image">
-        <h3>Cat Dry Food</h3>
-        <p>Nutritious and vet-approved formula.</p>
-        <div class="price">₱1,200.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="grooming">
-        <img src="petsham.png" alt="Pet Shampoo" class="product-image">
-        <h3>Pet Shampoo</h3>
-        <p>Gentle care for sensitive skin.</p>
-        <div class="price">₱320.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="medicines">
-        <img src="ticknple.webp" alt="Tick & Flea Medicine" class="product-image">
-        <h3>Tick & Flea Medicine</h3>
-        <p>Effective protection for your pet.</p>
-        <div class="price">₱680.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="trainpads.jpg" alt="Puppy Training Pads" class="product-image">
-        <h3>Puppy Training Pads</h3>
-        <p>Highly absorbent and leak-proof.</p>
-        <div class="price">₱550.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="food">
-        <img src="dogchew.jpg" alt="Dog Chew Treats" class="product-image">
-        <h3>Dog Chew Treats</h3>
-        <p>Helps maintain dental health.</p>
-        <div class="price">₱260.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="catlitter.jpeg" alt="Cat Litter" class="product-image">
-        <h3>Cat Litter</h3>
-        <p>Odor control and easy clumping.</p>
-        <div class="price">₱480.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="supplements">
-        <img src="petvet.jpg" alt="Pet Vitamins Syrup" class="product-image">
-        <h3>Pet Vitamins Syrup</h3>
-        <p>Boosts appetite and energy.</p>
-        <div class="price">₱390.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="dogcollar.jpg" alt="Dog Collar" class="product-image">
-        <h3>Dog Collar</h3>
-        <p>Adjustable and comfortable fit.</p>
-        <div class="price">₱220.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="grooming">
-        <img src="nailclipper.jpg" alt="Pet Nail Clipper" class="product-image">
-        <h3>Pet Nail Clipper</h3>
-        <p>Safe trimming for pets.</p>
-        <div class="price">₱180.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="food">
-        <img src="dogwetfood.webp" alt="Dog Wet Food" class="product-image">
-        <h3>Dog Wet Food</h3>
-        <p>Rich in protein and nutrients.</p>
-        <div class="price">₱95.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="food">
-        <img src="catwetfood.jpg" alt="Cat Wet Food" class="product-image">
-        <h3>Cat Wet Food</h3>
-        <p>Soft texture for easy eating.</p>
-        <div class="price">₱90.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="grooming">
-        <img src="earcleaner.webp" alt="Ear Cleaner" class="product-image">
-        <h3>Pet Ear Cleaner</h3>
-        <p>Prevents ear infections.</p>
-        <div class="price">₱300.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="dogharness.jpg" alt="Dog Harness" class="product-image">
-        <h3>Dog Harness</h3>
-        <p>Secure and breathable design.</p>
-        <div class="price">₱650.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="grooming">
-        <img src="pettooth.jpg" alt="Pet Toothbrush" class="product-image">
-        <h3>Pet Toothbrush Set</h3>
-        <p>Maintains oral hygiene.</p>
-        <div class="price">₱210.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="dogbed.jpg" alt="Dog Bed" class="product-image">
-        <h3>Dog Bed</h3>
-        <p>Soft and cozy sleeping area.</p>
-        <div class="price">₱1,450.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="catpost.jpg" alt="Cat Scratching Post" class="product-image">
-        <h3>Cat Scratching Post</h3>
-        <p>Protects furniture from scratches.</p>
-        <div class="price">₱980.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="petbowl.jpg" alt="Pet Feeding Bowl" class="product-image">
-        <h3>Pet Feeding Bowl</h3>
-        <p>Durable and easy to clean.</p>
-        <div class="price">₱150.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="dogleash.jpg" alt="Dog Leash" class="product-image">
-        <h3>Dog Leash</h3>
-        <p>Strong grip for daily walks.</p>
-        <div class="price">₱280.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="pettravel.jpg" alt="Pet Travel Carrier" class="product-image">
-        <h3>Pet Travel Carrier</h3>
-        <p>Safe and ventilated design.</p>
-        <div class="price">₱1,800.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="grooming">
-        <img src="wipes.jpg" alt="Pet Wipes" class="product-image">
-        <h3>Pet Wipes</h3>
-        <p>Quick cleaning on the go.</p>
-        <div class="price">₱140.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="supplements">
-        <img src="dogcal.jpg" alt="Dog Calcium Supplement" class="product-image">
-        <h3>Dog Calcium Supplement</h3>
-        <p>Supports bone development.</p>
-        <div class="price">₱520.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="supplements">
-        <img src="cathairball.jpg" alt="Cat Hairball Remedy" class="product-image">
-        <h3>Cat Hairball Remedy</h3>
-        <p>Reduces hairball formation.</p>
-        <div class="price">₱410.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="grooming">
-        <img src="petbrush.jpg" alt="Pet Grooming Brush" class="product-image">
-        <h3>Pet Grooming Brush</h3>
-        <p>Removes loose fur easily.</p>
-        <div class="price">₱230.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="medicines">
-        <img src="antitick.jpg" alt="Dog Anti-Tick Spray" class="product-image">
-        <h3>Dog Anti-Tick Spray</h3>
-        <p>Daily protection from parasites.</p>
-        <div class="price">₱360.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="supplements">
-        <img src="catvita.webp" alt="Cat Vitamins" class="product-image">
-        <h3>Cat Vitamins</h3>
-        <p>Improves coat and vitality.</p>
-        <div class="price">₱440.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="petcoolingmat.png" alt="Pet Cooling Mat" class="product-image">
-        <h3>Pet Cooling Mat</h3>
-        <p>Keeps pets cool in hot weather.</p>
-        <div class="price">₱890.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="petjar.jpg" alt="Dog Treat Jar" class="product-image">
-        <h3>Dog Treat Jar</h3>
-        <p>Airtight storage container.</p>
-        <div class="price">₱310.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="petfirstaid.webp" alt="Pet First Aid Kit" class="product-image">
-        <h3>Pet First Aid Kit</h3>
-        <p>Emergency essentials for pets.</p>
-        <div class="price">₱750.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="accessories">
-        <img src="raincoat.jpg" alt="Dog Raincoat" class="product-image">
-        <h3>Dog Raincoat</h3>
-        <p>Waterproof and lightweight.</p>
-        <div class="price">₱540.00</div>
-        <button>Add to Cart</button>
-      </div>
-
-    </div>
-
   </div>
-
-  <footer>
-    © 2026 Aptus Veterinary Clinic. All rights reserved.
-  </footer>
-
-  <script>
-    const buttons = document.querySelectorAll('.categories button');
-    const products = document.querySelectorAll('.product-card');
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        buttons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
-
-        const category = button.getAttribute('data-category');
-        products.forEach(product => {
-          if(category === 'all' || product.getAttribute('data-category') === category) {
-            product.style.display = 'flex';
-          } else {
-            product.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
 
 </body>
 </html>
