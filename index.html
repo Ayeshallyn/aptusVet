@@ -13,12 +13,12 @@
     }
 
     body {
-      background-color: #f7f2ee; /* Warm cream from image background */
-      color: #4a4a4a; /* Soft dark gray for readability */
+      background-color: #f7f2ee;
+      color: #4a4a4a;
     }
 
     header {
-      background-color: #B7966B; /*header color */
+      background-color: #B7966B;
       color: #fff;
       padding: 20px;
     }
@@ -63,13 +63,14 @@
       padding: 8px 14px;
       border: none;
       border-radius: 20px;
-      background-color: #a67b52; /* Earthy brown from the "Our Services" buttons */
+      background-color: #a67b52;
       color: #fff;
       cursor: pointer;
       font-size: 13px;
     }
 
-    .categories button:hover {
+    .categories button:hover,
+    .categories button.active {
       background-color: #8e6845;
       color: #fff;
     }
@@ -89,22 +90,19 @@
       flex-direction: column;
     }
 
-    .product-image {
-      height: 150px;
-      background-color: #fbf9f7; /* Very light tint for image placeholders */
+    .product-card img.product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
       border-radius: 8px;
       margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #b5b0ab;
+      background-color: #fbf9f7;
     }
 
     .product-card h3 {
       font-size: 16px;
       margin-bottom: 6px;
-      color: #2c5c54; /* Using the deep teal for product titles */
+      color: #2c5c54;
     }
 
     .product-card p {
@@ -116,7 +114,7 @@
     .price {
       font-weight: bold;
       margin-bottom: 12px;
-      color: #a67b52; /* Using the brown for pricing highlights */
+      color: #a67b52;
     }
 
     .product-card button {
@@ -124,20 +122,20 @@
       padding: 10px;
       border: none;
       border-radius: 6px;
-      background-color: #946d43; /*color button*/
+      background-color: #946d43;
       color: #fff;
       cursor: pointer;
       font-size: 14px;
     }
 
     .product-card button:hover {
-      background-color: #724A24; /*color button for hover*/
+      background-color: #724A24;
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #ffffff; /* Clean white footer */
+      background-color: #ffffff;
       color: #b5b0ab;
       font-size: 13px;
       margin-top: 40px;
@@ -160,26 +158,26 @@
     </div>
 
     <div class="categories">
-      <button>All</button>
-      <button>Food</button>
-      <button>Supplements</button>
-      <button>Medicines</button>
-      <button>Grooming</button>
-      <button>Accessories</button>
+      <button class="active" data-category="all">All</button>
+      <button data-category="food">Food</button>
+      <button data-category="supplements">Supplements</button>
+      <button data-category="medicines">Medicines</button>
+      <button data-category="grooming">Grooming</button>
+      <button data-category="accessories">Accessories</button>
     </div>
 
     <div class="products">
 
-      <div class="product-card">
-    <img src="dogmulti.jpg" alt="Dog Multivitamins" class="product-image">
-    <h3>Dog Multivitamins</h3>
-    <p>Supports overall health and immunity.</p>
-    <div class="price">₱450.00</div>
-    <button>Add to Cart</button>
-  </div>
+      <!-- All products with correct categories -->
+      <div class="product-card" data-category="supplements">
+        <img src="dogmulti.jpg" alt="Dog Multivitamins" class="product-image">
+        <h3>Dog Multivitamins</h3>
+        <p>Supports overall health and immunity.</p>
+        <div class="price">₱450.00</div>
+        <button>Add to Cart</button>
+      </div>
 
-
-      <div class="product-card">
+      <div class="product-card" data-category="food">
         <img src="catdry.png" alt="Cat Dry Food" class="product-image">
         <h3>Cat Dry Food</h3>
         <p>Nutritious and vet-approved formula.</p>
@@ -187,7 +185,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grooming">
         <img src="petsham.png" alt="Pet Shampoo" class="product-image">
         <h3>Pet Shampoo</h3>
         <p>Gentle care for sensitive skin.</p>
@@ -195,15 +193,15 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
-        <img src="ticknple.webp" alt="Tick  Flea Medicine" class="product-image">
+      <div class="product-card" data-category="medicines">
+        <img src="ticknple.webp" alt="Tick & Flea Medicine" class="product-image">
         <h3>Tick & Flea Medicine</h3>
         <p>Effective protection for your pet.</p>
         <div class="price">₱680.00</div>
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="trainpads.jpg" alt="Puppy Training Pads" class="product-image">
         <h3>Puppy Training Pads</h3>
         <p>Highly absorbent and leak-proof.</p>
@@ -211,7 +209,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="food">
         <img src="dogchew.jpg" alt="Dog Chew Treats" class="product-image">
         <h3>Dog Chew Treats</h3>
         <p>Helps maintain dental health.</p>
@@ -219,7 +217,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="catlitter.jpeg" alt="Cat Litter" class="product-image">
         <h3>Cat Litter</h3>
         <p>Odor control and easy clumping.</p>
@@ -227,7 +225,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="supplements">
         <img src="petvet.jpg" alt="Pet Vitamins Syrup" class="product-image">
         <h3>Pet Vitamins Syrup</h3>
         <p>Boosts appetite and energy.</p>
@@ -235,7 +233,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="dogcollar.jpg" alt="Dog Collar" class="product-image">
         <h3>Dog Collar</h3>
         <p>Adjustable and comfortable fit.</p>
@@ -243,15 +241,15 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
-        <img src="nailclipper.jpg" alt="Nail Clipper" class="product-image">
+      <div class="product-card" data-category="grooming">
+        <img src="nailclipper.jpg" alt="Pet Nail Clipper" class="product-image">
         <h3>Pet Nail Clipper</h3>
         <p>Safe trimming for pets.</p>
         <div class="price">₱180.00</div>
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="food">
         <img src="dogwetfood.webp" alt="Dog Wet Food" class="product-image">
         <h3>Dog Wet Food</h3>
         <p>Rich in protein and nutrients.</p>
@@ -259,7 +257,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="food">
         <img src="catwetfood.jpg" alt="Cat Wet Food" class="product-image">
         <h3>Cat Wet Food</h3>
         <p>Soft texture for easy eating.</p>
@@ -267,7 +265,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grooming">
         <img src="earcleaner.webp" alt="Ear Cleaner" class="product-image">
         <h3>Pet Ear Cleaner</h3>
         <p>Prevents ear infections.</p>
@@ -275,7 +273,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="dogharness.jpg" alt="Dog Harness" class="product-image">
         <h3>Dog Harness</h3>
         <p>Secure and breathable design.</p>
@@ -283,7 +281,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grooming">
         <img src="pettooth.jpg" alt="Pet Toothbrush" class="product-image">
         <h3>Pet Toothbrush Set</h3>
         <p>Maintains oral hygiene.</p>
@@ -291,7 +289,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="dogbed.jpg" alt="Dog Bed" class="product-image">
         <h3>Dog Bed</h3>
         <p>Soft and cozy sleeping area.</p>
@@ -299,7 +297,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="catpost.jpg" alt="Cat Scratching Post" class="product-image">
         <h3>Cat Scratching Post</h3>
         <p>Protects furniture from scratches.</p>
@@ -307,7 +305,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="petbowl.jpg" alt="Pet Feeding Bowl" class="product-image">
         <h3>Pet Feeding Bowl</h3>
         <p>Durable and easy to clean.</p>
@@ -315,7 +313,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="dogleash.jpg" alt="Dog Leash" class="product-image">
         <h3>Dog Leash</h3>
         <p>Strong grip for daily walks.</p>
@@ -323,7 +321,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="pettravel.jpg" alt="Pet Travel Carrier" class="product-image">
         <h3>Pet Travel Carrier</h3>
         <p>Safe and ventilated design.</p>
@@ -331,7 +329,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grooming">
         <img src="wipes.jpg" alt="Pet Wipes" class="product-image">
         <h3>Pet Wipes</h3>
         <p>Quick cleaning on the go.</p>
@@ -339,7 +337,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="supplements">
         <img src="dogcal.jpg" alt="Dog Calcium Supplement" class="product-image">
         <h3>Dog Calcium Supplement</h3>
         <p>Supports bone development.</p>
@@ -347,7 +345,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="supplements">
         <img src="cathairball.jpg" alt="Cat Hairball Remedy" class="product-image">
         <h3>Cat Hairball Remedy</h3>
         <p>Reduces hairball formation.</p>
@@ -355,15 +353,15 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
-        <img src="petbrush.jpg" alt="Per Grooming Brush" class="product-image">
+      <div class="product-card" data-category="grooming">
+        <img src="petbrush.jpg" alt="Pet Grooming Brush" class="product-image">
         <h3>Pet Grooming Brush</h3>
         <p>Removes loose fur easily.</p>
         <div class="price">₱230.00</div>
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="medicines">
         <img src="antitick.jpg" alt="Dog Anti-Tick Spray" class="product-image">
         <h3>Dog Anti-Tick Spray</h3>
         <p>Daily protection from parasites.</p>
@@ -371,7 +369,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="supplements">
         <img src="catvita.webp" alt="Cat Vitamins" class="product-image">
         <h3>Cat Vitamins</h3>
         <p>Improves coat and vitality.</p>
@@ -379,7 +377,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="petcoolingmat.png" alt="Pet Cooling Mat" class="product-image">
         <h3>Pet Cooling Mat</h3>
         <p>Keeps pets cool in hot weather.</p>
@@ -387,7 +385,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="petjar.jpg" alt="Dog Treat Jar" class="product-image">
         <h3>Dog Treat Jar</h3>
         <p>Airtight storage container.</p>
@@ -395,7 +393,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="petfirstaid.webp" alt="Pet First Aid Kit" class="product-image">
         <h3>Pet First Aid Kit</h3>
         <p>Emergency essentials for pets.</p>
@@ -403,7 +401,7 @@
         <button>Add to Cart</button>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
         <img src="raincoat.jpg" alt="Dog Raincoat" class="product-image">
         <h3>Dog Raincoat</h3>
         <p>Waterproof and lightweight.</p>
@@ -418,6 +416,29 @@
   <footer>
     © 2026 Aptus Veterinary Clinic. All rights reserved.
   </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.categories button');
+    const products = document.querySelectorAll('.product-card');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        buttons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const category = button.getAttribute('data-category');
+        products.forEach(product => {
+          if(category === 'all' || product.getAttribute('data-category') === category) {
+            product.style.display = 'flex';
+          } else {
+            product.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
