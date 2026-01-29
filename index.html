@@ -10,269 +10,183 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Montserrat", sans-serif; background: #f8f6f3; color: #2f2f2f; }
 
-    body {
-      font-family: "Montserrat", sans-serif;
-      background: #f8f6f3;
-      color: #2f2f2f;
-    }
+    .container { max-width: 1100px; margin: auto; padding: 40px 20px 60px; }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .title h1 { font-family: "Playfair Display", serif; font-size: 32px; margin-bottom: 6px; }
+    .title p { color: #666; font-size: 14px; line-height: 1.4; }
 
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { padding: 12px 16px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; font-size: 13px; transition: 0.2s ease; }
+    .btn-primary { background: #7aa89f; color: #fff; }
+    .btn-primary:hover { filter: brightness(0.95); }
+    .btn-light { background: #f3f0ec; border: 1px solid #e8ded5; color: #333; }
+    .btn-light:hover { background: #efeae4; }
 
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: #7aa89f;
-      color: #fff;
-    }
-
-    .pets {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .pets { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
 
     .pet {
       background: #fff;
       border-radius: 18px;
-      padding: 16px;
+      padding: 14px;
       border: 1px solid #eee7df;
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 74px 1fr auto;
+      gap: 14px;
       align-items: center;
-      gap: 12px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
     }
 
-    .pet-info strong {
-      font-size: 16px;
-    }
+    .pet-pic { width: 74px; height: 74px; border-radius: 18px; object-fit: cover; border: 1px solid #eee7df; background: #f3f0ec; }
+    .pet-main .name { font-size: 16px; font-weight: 900; margin-bottom: 4px; }
+    .pet-main .meta { font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 8px; }
 
-    .pet-info span {
-      font-size: 13px;
-      color: #666;
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .chip {
+      font-size: 12px; font-weight: 900; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid #eee7df; background: #fbfaf8; color: #444; white-space: nowrap;
     }
+    .chip.good { background: #e3f4ef; border-color: #cdebe3; color: #2e7d6b; }
+    .chip.warn { background: #fff0e0; border-color: #ffe0bf; color: #b85f00; }
 
-    /* =====================
-       MODAL
-    ===================== */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
+    .pet-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .small { padding: 10px 12px; border-radius: 12px; border: none; cursor: pointer; font-weight: 900; font-size: 12px; transition: 0.2s ease; white-space: nowrap; }
+    .small.primary { background: #7aa89f; color: #fff; }
+    .small.primary:hover { filter: brightness(0.95); }
+    .small.light { background: #f3f0ec; border: 1px solid #e8ded5; color: #333; }
+    .small.light:hover { background: #efeae4; }
 
-    .modal.active {
-      display: flex;
-    }
+    .empty { background: #fff; border: 1px dashed #d9cfc6; border-radius: 18px; padding: 18px; color: #666; line-height: 1.5; }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 18px; }
+    .modal.active { display: flex; }
 
     .modal-box {
-      background: #ffffff;
-      width: 100%;
-      max-width: 520px;
-      border-radius: 20px;
-      padding: 24px;
-      position: relative;
-      animation: pop 0.2s ease;
+      background: #fff; width: 100%; max-width: 640px; border-radius: 20px; padding: 22px; position: relative;
+      border: 1px solid #eee7df;
     }
 
-    @keyframes pop {
-      from { transform: scale(0.96); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+    .close { position: absolute; top: 14px; right: 16px; font-size: 20px; cursor: pointer; user-select: none; }
 
-    .modal-box h2 {
-      font-family: "Playfair Display", serif;
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
+    .modal-box h2 { font-family: "Playfair Display", serif; font-size: 26px; margin-bottom: 6px; }
+    .modal-box p { font-size: 13px; color: #666; margin-bottom: 16px; }
 
-    .modal-box p {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 16px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: span 2; }
 
-    .close {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field.full {
-      grid-column: span 2;
-    }
-
-    label {
-      font-size: 12px;
-      font-weight: 700;
-      color: #555;
-    }
+    label { font-size: 12px; font-weight: 900; color: #555; }
 
     input, select, textarea {
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-family: inherit;
-      font-size: 14px;
+      padding: 10px 12px; border-radius: 12px; border: 1px solid #ddd;
+      font-family: inherit; font-size: 14px; outline: none; background: #fff;
     }
 
-    textarea {
-      resize: none;
-      height: 80px;
-    }
+    textarea { resize: none; height: 90px; }
 
-    .form-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-      justify-content: flex-end;
-    }
+    .photo-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .photo-preview { width: 72px; height: 72px; border-radius: 18px; border: 1px solid #eee7df; background: #f3f0ec; object-fit: cover; }
 
-    .btn-light {
-      background: #f3f0ec;
-      color: #333;
-    }
+    .form-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; flex-wrap: wrap; }
 
-    @media (max-width: 520px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-      .field.full {
-        grid-column: span 1;
-      }
+    .notice { margin-top: 12px; color: #b85f00; font-size: 13px; font-weight: 700; display: none; }
+    .notice.show { display: block; }
+
+    @media (max-width: 560px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: span 1; }
     }
   </style>
 </head>
 
 <body>
-
   <div class="container">
     <div class="top">
-      <div>
+      <div class="title">
         <h1>My Pets</h1>
-        <p style="color:#666;font-size:14px;">Manage your pet profiles and health records</p>
+        <p>Manage pet profiles, save photos, and keep basic details for faster appointments.</p>
       </div>
-      <button class="btn btn-primary" onclick="openModal()">+ Add Pet</button>
+      <div class="actions">
+        <button class="btn btn-light" id="clearAllBtn">Clear All</button>
+        <button class="btn btn-primary" id="openBtn">+ Add Pet</button>
+      </div>
     </div>
 
-    <div class="pets">
-      <div class="pet">
-        <div class="pet-info">
-          <strong>Buddy</strong><br>
-          <span>Dog • Golden Retriever • 3 yrs</span>
-        </div>
-        <span>Healthy</span>
-      </div>
-
-      <div class="pet">
-        <div class="pet-info">
-          <strong>Milo</strong><br>
-          <span>Cat • Persian • 2 yrs</span>
-        </div>
-        <span>Needs Checkup</span>
-      </div>
+    <div id="petsWrap" class="pets"></div>
+    <div id="emptyState" class="empty">
+      No pets yet. Click <b>+ Add Pet</b> to create your first pet profile.
     </div>
   </div>
 
   <!-- MODAL -->
   <div class="modal" id="petModal">
     <div class="modal-box">
-      <div class="close" onclick="closeModal()">✕</div>
+      <div class="close" id="closeBtn">✕</div>
 
       <h2>Add New Pet</h2>
-      <p>Fill in your pet’s information to create a profile.</p>
+      <p>Fill in your pet details. This will be saved even after refresh.</p>
 
-      <form>
+      <form id="petForm">
         <div class="form-grid">
-          <div class="field">
-            <label>Pet Name</label>
-            <input type="text" placeholder="e.g. Buddy">
+          <div class="field full">
+            <label>Pet Photo</label>
+            <div class="photo-row">
+              <img id="photoPreview" class="photo-preview" alt="Preview" />
+              <input id="petPhoto" type="file" accept="image/*" />
+            </div>
           </div>
 
           <div class="field">
-            <label>Species</label>
-            <select>
-              <option>Dog</option>
-              <option>Cat</option>
-              <option>Bird</option>
-              <option>Other</option>
+            <label>Pet Name *</label>
+            <input id="petName" type="text" placeholder="e.g. Buddy" required />
+          </div>
+
+          <div class="field">
+            <label>Species *</label>
+            <select id="petSpecies" required>
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Bird">Bird</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
           <div class="field">
             <label>Breed</label>
-            <input type="text" placeholder="Golden Retriever">
+            <input id="petBreed" type="text" placeholder="e.g. Shih Tzu" />
           </div>
 
           <div class="field">
-            <label>Age</label>
-            <input type="number" placeholder="Years">
+            <label>Age (years)</label>
+            <input id="petAge" type="number" min="0" step="1" placeholder="e.g. 2" />
           </div>
 
           <div class="field">
-            <label>Gender</label>
-            <select>
-              <option>Male</option>
-              <option>Female</option>
+            <label>Status</label>
+            <select id="petStatus">
+              <option value="Healthy">Healthy</option>
+              <option value="Needs Checkup">Needs Checkup</option>
             </select>
           </div>
 
           <div class="field">
             <label>Weight (kg)</label>
-            <input type="number" step="0.1">
+            <input id="petWeight" type="number" min="0" step="0.1" placeholder="e.g. 4.6" />
           </div>
 
           <div class="field full">
-            <label>Medical Notes</label>
-            <textarea placeholder="Allergies, conditions, etc."></textarea>
+            <label>Notes</label>
+            <textarea id="petNotes" placeholder="Allergies, conditions, reminders..."></textarea>
           </div>
         </div>
 
+        <div id="saveNotice" class="notice"></div>
+
         <div class="form-actions">
-          <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-light" id="cancelBtn">Cancel</button>
           <button type="submit" class="btn btn-primary">Save Pet</button>
         </div>
       </form>
@@ -280,14 +194,284 @@
   </div>
 
   <script>
+    const STORAGE_KEY = "aptus_pets_v1";
+
+    const petsWrap = document.getElementById("petsWrap");
+    const emptyState = document.getElementById("emptyState");
+
+    const modal = document.getElementById("petModal");
+    const openBtn = document.getElementById("openBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const clearAllBtn = document.getElementById("clearAllBtn");
+
+    const petForm = document.getElementById("petForm");
+    const saveNotice = document.getElementById("saveNotice");
+
+    const petPhoto = document.getElementById("petPhoto");
+    const photoPreview = document.getElementById("photoPreview");
+
+    const petName = document.getElementById("petName");
+    const petSpecies = document.getElementById("petSpecies");
+    const petBreed = document.getElementById("petBreed");
+    const petAge = document.getElementById("petAge");
+    const petStatus = document.getElementById("petStatus");
+    const petWeight = document.getElementById("petWeight");
+    const petNotes = document.getElementById("petNotes");
+
+    let pets = [];
+    let pendingPhotoDataUrl = ""; // base64 string
+
+    function safeParse(json, fallback) {
+      try { return JSON.parse(json) ?? fallback; }
+      catch { return fallback; }
+    }
+
+    function loadPets() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      pets = raw ? safeParse(raw, []) : [];
+      renderPets();
+    }
+
+    function savePets() {
+      // If localStorage fails (quota / blocked), we show a message.
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pets));
+        showNotice("");
+        return true;
+      } catch (err) {
+        showNotice("Could not save. Photo may be too large or storage is blocked. Try a smaller photo.", true);
+        return false;
+      }
+    }
+
+    function showNotice(msg, isError = false) {
+      if (!msg) {
+        saveNotice.classList.remove("show");
+        saveNotice.textContent = "";
+        return;
+      }
+      saveNotice.textContent = msg;
+      saveNotice.style.color = isError ? "#b00020" : "#2e7d6b";
+      saveNotice.classList.add("show");
+    }
+
+    function renderPets() {
+      petsWrap.innerHTML = "";
+
+      if (!pets.length) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      pets.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "pet";
+
+        const img = document.createElement("img");
+        img.className = "pet-pic";
+        img.alt = p.name || "Pet";
+        img.src = p.photo || defaultPhoto(p.species);
+
+        const main = document.createElement("div");
+        main.className = "pet-main";
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = p.name;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = `${p.species}${p.breed ? " • " + p.breed : ""}${p.age ? " • " + p.age + " yrs" : ""}`;
+
+        const chips = document.createElement("div");
+        chips.className = "chips";
+
+        const statusChip = document.createElement("span");
+        statusChip.className = "chip " + (p.status === "Healthy" ? "good" : "warn");
+        statusChip.textContent = p.status;
+
+        chips.appendChild(statusChip);
+
+        if (p.weight) {
+          const w = document.createElement("span");
+          w.className = "chip";
+          w.textContent = `Weight: ${p.weight} kg`;
+          chips.appendChild(w);
+        }
+
+        if (p.notes) {
+          const n = document.createElement("span");
+          n.className = "chip";
+          n.textContent = "Has notes";
+          chips.appendChild(n);
+        }
+
+        main.appendChild(name);
+        main.appendChild(meta);
+        main.appendChild(chips);
+
+        const actions = document.createElement("div");
+        actions.className = "pet-actions";
+
+        const del = document.createElement("button");
+        del.className = "small light";
+        del.type = "button";
+        del.textContent = "Delete";
+        del.onclick = () => deletePet(p.id);
+
+        const view = document.createElement("button");
+        view.className = "small primary";
+        view.type = "button";
+        view.textContent = "View";
+        view.onclick = () => alert("Preview only. Connect this to your profile page later 🙂");
+
+        actions.appendChild(del);
+        actions.appendChild(view);
+
+        card.appendChild(img);
+        card.appendChild(main);
+        card.appendChild(actions);
+
+        petsWrap.appendChild(card);
+      });
+    }
+
+    function defaultPhoto(species) {
+      // simple placeholder colors via SVG data url (no external images)
+      const bg = species === "Cat" ? "#e7efff" : species === "Dog" ? "#e3f4ef" : "#fff0e0";
+      const text = species ? species[0].toUpperCase() : "P";
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+          <rect width="100%" height="100%" rx="28" ry="28" fill="${bg}"/>
+          <text x="50%" y="54%" text-anchor="middle" font-size="90" font-family="Montserrat" font-weight="900" fill="#333">${text}</text>
+        </svg>`;
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    }
+
     function openModal() {
-      document.getElementById("petModal").classList.add("active");
+      modal.classList.add("active");
     }
 
     function closeModal() {
-      document.getElementById("petModal").classList.remove("active");
+      modal.classList.remove("active");
+      petForm.reset();
+      pendingPhotoDataUrl = "";
+      photoPreview.src = "";
+      showNotice("");
     }
-  </script>
 
+    function deletePet(id) {
+      pets = pets.filter(p => p.id !== id);
+      savePets();
+      renderPets();
+    }
+
+    function clearAll() {
+      pets = [];
+      localStorage.removeItem(STORAGE_KEY);
+      renderPets();
+    }
+
+    // Compress image -> smaller base64 so it actually saves
+    async function fileToCompressedDataURL(file, maxSize = 420, quality = 0.7) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = reject;
+          img.onload = () => {
+            let w = img.width;
+            let h = img.height;
+
+            const scale = Math.min(maxSize / w, maxSize / h, 1);
+            w = Math.round(w * scale);
+            h = Math.round(h * scale);
+
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, w, h);
+
+            const dataUrl = canvas.toDataURL("image/jpeg", quality);
+            resolve(dataUrl);
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Events
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+    cancelBtn.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    clearAllBtn.addEventListener("click", () => {
+      const ok = confirm("Clear all pets? This will remove saved pets from this browser.");
+      if (ok) clearAll();
+    });
+
+    petPhoto.addEventListener("change", async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      try {
+        pendingPhotoDataUrl = await fileToCompressedDataURL(file, 420, 0.7);
+        photoPreview.src = pendingPhotoDataUrl;
+        showNotice("");
+      } catch {
+        pendingPhotoDataUrl = "";
+        photoPreview.src = "";
+        showNotice("Could not read this image. Try a different file.", true);
+      }
+    });
+
+    petForm.addEventListener("submit", (e) => {
+      // ✅ This is what stops the “didn't save” refresh problem
+      e.preventDefault();
+
+      const newPet = {
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        name: petName.value.trim(),
+        species: petSpecies.value,
+        breed: petBreed.value.trim(),
+        age: petAge.value ? String(petAge.value).trim() : "",
+        status: petStatus.value,
+        weight: petWeight.value ? String(petWeight.value).trim() : "",
+        notes: petNotes.value.trim(),
+        photo: pendingPhotoDataUrl
+      };
+
+      if (!newPet.name) {
+        showNotice("Pet name is required.", true);
+        return;
+      }
+
+      pets.unshift(newPet);
+
+      const ok = savePets();
+      if (!ok) {
+        // remove if not saved
+        pets.shift();
+        return;
+      }
+
+      renderPets();
+      closeModal();
+    });
+
+    // Load saved pets on page open
+    loadPets();
+  </script>
 </body>
 </html>
