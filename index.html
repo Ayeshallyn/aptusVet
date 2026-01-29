@@ -3,404 +3,291 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aptus Vet | My Pets (Alt Design)</title>
+  <title>Aptus Vet | My Pets</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 
   <style>
-    /* =======================
-       RESET + GLOBAL
-    ======================= */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: "Montserrat", sans-serif;
       background: #f8f6f3;
       color: #2f2f2f;
     }
+
     .container {
-      width: 92%;
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 28px 0 60px;
+      margin: auto;
+      padding: 40px 20px;
     }
 
-    /* =======================
-       HEADER STRIP
-    ======================= */
-    .page-head {
-      background: #ffffff;
-      border: 1px solid #eee7df;
-      border-radius: 18px;
-      padding: 18px 18px;
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
-    }
-
-    .head-left h1 {
-      font-family: "Playfair Display", serif;
-      font-weight: 600;
-      font-size: 26px;
-      letter-spacing: -0.3px;
-    }
-    .head-left p {
-      margin-top: 6px;
-      font-size: 13px;
-      color: #6b6b6b;
-      line-height: 1.4;
-    }
-
-    .head-actions {
-      display: flex;
-      gap: 10px;
+      margin-bottom: 24px;
+      gap: 12px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     .btn {
-      border: none;
+      padding: 12px 16px;
       border-radius: 12px;
-      padding: 10px 14px;
-      cursor: pointer;
+      border: none;
       font-weight: 700;
-      font-size: 13px;
-      transition: 0.2s ease;
-      white-space: nowrap;
+      cursor: pointer;
     }
 
     .btn-primary {
       background: #7aa89f;
       color: #fff;
     }
-    .btn-primary:hover { filter: brightness(0.95); }
 
-    .btn-ghost {
-      background: #f3f0ec;
-      color: #333;
-      border: 1px solid #ebe3db;
-    }
-    .btn-ghost:hover { background: #efeae4; }
-
-    /* =======================
-       TABS + SEARCH
-    ======================= */
-    .subbar {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .tab {
-      border: 1px solid #ece6de;
-      background: #ffffff;
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #444;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .tab:hover { background: #f3f0ec; }
-    .tab.active {
-      background: #e3f4ef;
-      border-color: #cdebe3;
-      color: #2e7d6b;
-    }
-
-    .search {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #ffffff;
-      border: 1px solid #ece6de;
-      border-radius: 14px;
-      padding: 10px 12px;
-      min-width: 260px;
-    }
-
-    .search input {
-      width: 100%;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      background: transparent;
-    }
-
-    /* =======================
-       LIST CARDS
-    ======================= */
-    .pets-list {
-      margin-top: 16px;
+    .pets {
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .pet-row {
-      background: #ffffff;
-      border: 1px solid #eee7df;
+    .pet {
+      background: #fff;
       border-radius: 18px;
-      padding: 14px;
-      display: grid;
-      grid-template-columns: 70px 1.2fr 1fr auto;
-      gap: 14px;
-      align-items: center;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
-      transition: 0.15s ease;
-    }
-
-    .pet-row:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 26px rgba(0,0,0,0.07);
-    }
-
-    .pet-pic {
-      width: 70px;
-      height: 70px;
-      border-radius: 18px;
-      object-fit: cover;
+      padding: 16px;
       border: 1px solid #eee7df;
-      background: #f3f0ec;
-    }
-
-    .pet-main .name {
-      font-size: 16px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .pet-main .meta {
-      font-size: 13px;
-      color: #6b6b6b;
-      line-height: 1.4;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .chip {
-      font-size: 12px;
-      font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #eee7df;
-      background: #fbfaf8;
-      color: #444;
-      white-space: nowrap;
-    }
-
-    .chip.good {
-      background: #e3f4ef;
-      border-color: #cdebe3;
-      color: #2e7d6b;
-    }
-    .chip.warn {
-      background: #fff0e0;
-      border-color: #ffe0bf;
-      color: #b85f00;
-    }
-    .chip.info {
-      background: #e7efff;
-      border-color: #d5e3ff;
-      color: #2b5bbb;
-    }
-
-    .row-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
-
-    .small {
-      padding: 9px 12px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 800;
-      border: none;
-      cursor: pointer;
-      transition: 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .small.primary { background: #7aa89f; color: #fff; }
-    .small.primary:hover { filter: brightness(0.95); }
-
-    .small.light {
-      background: #f3f0ec;
-      color: #333;
-      border: 1px solid #ebe3db;
-    }
-    .small.light:hover { background: #efeae4; }
-
-    /* =======================
-       EMPTY / ADD PET BLOCK
-    ======================= */
-    .add-block {
-      margin-top: 16px;
-      background: linear-gradient(180deg, #ffffff, #fbfaf8);
-      border: 1px dashed #d9cfc6;
-      border-radius: 18px;
-      padding: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .add-block h2 {
+    .pet-info strong {
       font-size: 16px;
-      font-weight: 900;
+    }
+
+    .pet-info span {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* =====================
+       MODAL
+    ===================== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      animation: pop 0.2s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-box h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
       margin-bottom: 6px;
     }
 
-    .add-block p {
+    .modal-box p {
       font-size: 13px;
-      color: #6b6b6b;
-      line-height: 1.4;
+      color: #666;
+      margin-bottom: 16px;
     }
 
-    /* =======================
-       RESPONSIVE
-    ======================= */
-    @media (max-width: 860px) {
-      .subbar { grid-template-columns: 1fr; }
-      .search { min-width: 0; }
-      .pet-row {
-        grid-template-columns: 70px 1fr;
-        grid-template-areas:
-          "pic main"
-          "chips chips"
-          "actions actions";
+    .close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    input, select, textarea {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      justify-content: flex-end;
+    }
+
+    .btn-light {
+      background: #f3f0ec;
+      color: #333;
+    }
+
+    @media (max-width: 520px) {
+      .form-grid {
+        grid-template-columns: 1fr;
       }
-      .pet-pic { grid-area: pic; }
-      .pet-main { grid-area: main; }
-      .chips { grid-area: chips; }
-      .row-actions { grid-area: actions; justify-content: flex-start; }
+      .field.full {
+        grid-column: span 1;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <div class="container">
-
-    <header class="page-head">
-      <div class="head-left">
+    <div class="top">
+      <div>
         <h1>My Pets</h1>
-        <p>View pet profiles, check health status, and book appointments in one place.</p>
+        <p style="color:#666;font-size:14px;">Manage your pet profiles and health records</p>
       </div>
-
-      <div class="head-actions">
-        <button class="btn btn-ghost">Upload Records</button>
-        <button class="btn btn-primary">+ Add Pet</button>
-      </div>
-    </header>
-
-    <div class="subbar">
-      <div class="tabs">
-        <button class="tab active">All</button>
-        <button class="tab">Dogs</button>
-        <button class="tab">Cats</button>
-        <button class="tab">Other</button>
-      </div>
-
-      <div class="search">
-        <span>🔎</span>
-        <input type="text" placeholder="Search pets (name / breed)..." />
-      </div>
+      <button class="btn btn-primary" onclick="openModal()">+ Add Pet</button>
     </div>
 
-    <section class="pets-list">
-      <article class="pet-row">
-        <img class="pet-pic"
-          src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=400&q=70"
-          alt="Buddy">
-        <div class="pet-main">
-          <div class="name">Buddy</div>
-          <div class="meta">Dog • Golden Retriever • 3 years old</div>
+    <div class="pets">
+      <div class="pet">
+        <div class="pet-info">
+          <strong>Buddy</strong><br>
+          <span>Dog • Golden Retriever • 3 yrs</span>
         </div>
-        <div class="chips">
-          <span class="chip good">Healthy</span>
-          <span class="chip info">Next Vax: Feb 02</span>
-          <span class="chip">Last Visit: Jan 10</span>
-          <span class="chip">Weight: 28 kg</span>
-        </div>
-        <div class="row-actions">
-          <button class="small light">Edit</button>
-          <button class="small primary">View Profile</button>
-          <button class="small light">Book</button>
-        </div>
-      </article>
-
-      <article class="pet-row">
-        <img class="pet-pic"
-          src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=400&q=70"
-          alt="Milo">
-        <div class="pet-main">
-          <div class="name">Milo</div>
-          <div class="meta">Cat • Persian • 2 years old</div>
-        </div>
-        <div class="chips">
-          <span class="chip warn">Needs Checkup</span>
-          <span class="chip info">Next Vax: Feb 14</span>
-          <span class="chip">Last Visit: Dec 21</span>
-          <span class="chip">Weight: 4.6 kg</span>
-        </div>
-        <div class="row-actions">
-          <button class="small light">Edit</button>
-          <button class="small primary">View Profile</button>
-          <button class="small light">Book</button>
-        </div>
-      </article>
-
-      <article class="pet-row">
-        <img class="pet-pic"
-          src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?auto=format&fit=crop&w=400&q=70"
-          alt="Luna">
-        <div class="pet-main">
-          <div class="name">Luna</div>
-          <div class="meta">Dog • Shih Tzu • 1 year old</div>
-        </div>
-        <div class="chips">
-          <span class="chip info">Vax Due Soon</span>
-          <span class="chip">Next Vax: Feb 01</span>
-          <span class="chip">Last Visit: Jan 05</span>
-          <span class="chip">Weight: 5.1 kg</span>
-        </div>
-        <div class="row-actions">
-          <button class="small light">Edit</button>
-          <button class="small primary">View Profile</button>
-          <button class="small light">Book</button>
-        </div>
-      </article>
-    </section>
-
-    <section class="add-block">
-      <div>
-        <h2>Add a new pet profile</h2>
-        <p>Store pet details like breed, allergies, vaccines, and medical history for faster checkups.</p>
+        <span>Healthy</span>
       </div>
-      <button class="btn btn-primary">+ Add Pet</button>
-    </section>
 
+      <div class="pet">
+        <div class="pet-info">
+          <strong>Milo</strong><br>
+          <span>Cat • Persian • 2 yrs</span>
+        </div>
+        <span>Needs Checkup</span>
+      </div>
+    </div>
   </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="petModal">
+    <div class="modal-box">
+      <div class="close" onclick="closeModal()">✕</div>
+
+      <h2>Add New Pet</h2>
+      <p>Fill in your pet’s information to create a profile.</p>
+
+      <form>
+        <div class="form-grid">
+          <div class="field">
+            <label>Pet Name</label>
+            <input type="text" placeholder="e.g. Buddy">
+          </div>
+
+          <div class="field">
+            <label>Species</label>
+            <select>
+              <option>Dog</option>
+              <option>Cat</option>
+              <option>Bird</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Breed</label>
+            <input type="text" placeholder="Golden Retriever">
+          </div>
+
+          <div class="field">
+            <label>Age</label>
+            <input type="number" placeholder="Years">
+          </div>
+
+          <div class="field">
+            <label>Gender</label>
+            <select>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Weight (kg)</label>
+            <input type="number" step="0.1">
+          </div>
+
+          <div class="field full">
+            <label>Medical Notes</label>
+            <textarea placeholder="Allergies, conditions, etc."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Pet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("petModal").classList.add("active");
+    }
+
+    function closeModal() {
+      document.getElementById("petModal").classList.remove("active");
+    }
+  </script>
+
 </body>
 </html>
